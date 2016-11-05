@@ -9,45 +9,49 @@ typedef struct node {
 	struct node *down;
 }node;
 
-void insert(char *buffer,int i);
+void insert(char *buffer, int i);
 void insert2(char *buffer, int i);
 int isEmpty();
 void print(node *head);
+void create_maze();
 
 node *head = NULL, *tail = NULL, *current = NULL, *follow = NULL;
 
 int main() {
-	FILE *fp;	
-	int len,i;
+	create_maze();
+	return 0;
+}
+void create_maze() {
+	FILE *fp;
+	int len, i;
 	char buffer[100];
 	fp = fopen("maze1.txt", "r");
 	while (fgets(buffer, 100, fp) != NULL) {
 		len = strlen(buffer);
-		if (isEmpty()){
-			for (i = 0; i < len-1; i++) {
+		if (isEmpty()) {
+			for (i = 0; i < len - 1; i++) {
 				insert(buffer, i);
-			}		
+			}
 		}
 		else {
-			for (i = 0; i < len-1; i++) {
+			for (i = 0; i < len - 1; i++) {
 				insert2(buffer, i);
 			}
 		}
 		print(head);
 	}
-	return 0;
 }
-void insert(char *buffer,int i) {		//insert a new node 
+void insert(char *buffer, int i) {		//insert a new node 
 	char c[2];
 	//	create new node
-	node *newnode;	
-	newnode = (node*)malloc(sizeof(node));	
+	node *newnode;
+	newnode = (node*)malloc(sizeof(node));
 	newnode->left = NULL;
 	newnode->right = NULL;
 	newnode->up = NULL;
 	newnode->down = NULL;
 	//	taking one char from string and converting to int
-	strncpy(c, &buffer[i], 1);	
+	strncpy(c, &buffer[i], 1);
 	newnode->value = atoi(c);
 	//	linking nodes
 	if (isEmpty()) {
@@ -61,7 +65,7 @@ void insert(char *buffer,int i) {		//insert a new node
 	}
 }
 void insert2(char *buffer, int i) {
-	char c[2];	
+	char c[2];
 	//	create new node
 	node *newnode, *tmp = NULL;
 	newnode = (node*)malloc(sizeof(node));
@@ -70,9 +74,9 @@ void insert2(char *buffer, int i) {
 	newnode->up = NULL;
 	newnode->down = NULL;
 	//	taking one char from string and converting to int
-	strncpy(c, &buffer[i], 1);	
+	strncpy(c, &buffer[i], 1);
 	newnode->value = atoi(c);
-	
+
 	if (i == 0) {	// if new row move current to new row's first node position
 		current = follow = head;
 		while (current != NULL) {

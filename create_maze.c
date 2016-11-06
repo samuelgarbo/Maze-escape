@@ -12,7 +12,6 @@ typedef struct node {
 void insert(char *buffer, int i);
 void insert2(char *buffer, int i);
 int isEmpty();
-void print(node *head);
 void create_maze();
 
 node *head = NULL, *tail = NULL, *current = NULL, *follow = NULL;
@@ -108,16 +107,4 @@ int isEmpty() {	//	check if linked list is empty
 	}
 	else return 0;
 }
-void print(node *head) {
-	node *temp1, *temp2;
-	temp1 = temp2 = head;
-	while (temp1->down != NULL) {
-		temp2 = temp1;
-		temp1 = temp1->down;
-	}
-	while (temp1 != NULL) {
-		printf("%d", temp1->value);
-		temp1 = temp1->right;
-	}
-	printf("\n");
-}
+

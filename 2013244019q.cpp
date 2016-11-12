@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <time.h>
 #include <string.h>
 #include <Windows.h>
-void setcolor(int color)//색깔함수
+void setcolor(int color)//색깔함수 http://skmagic.tistory.com/entry/c%EC%96%B8%EC%96%B4-%EC%BD%98%EC%86%94%EC%83%89%EC%83%9D-%EB%B0%94%EA%BE%B8%EA%B8%B0
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
@@ -11,7 +12,7 @@ void SetColor(int backcolor, int fontcolor)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backcolor * 16 + fontcolor);
 }
-void gotoxy(int x, int y)//좌표함수
+void gotoxy(int x, int y)//좌표함수 http://m.blog.naver.com/bestheroz/110240153
 {
 	COORD Pos = {x-1, y-1};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
@@ -35,7 +36,7 @@ enum {
 	WHITE,     //15 : 흰색
 };
 void gotoxy(int x, int y);
-void showcharacter();
+void timescore();
 void ranking();
 typedef struct node {
 	int value;
@@ -159,25 +160,31 @@ int main(void)
 		}
 	}
 	setcolor(15); //칼라 흰색(15)으로 초기화
-	while (_kbhit()) _getch(); //버퍼에 기록된 키값을 버림
-	
-	scanf("%d",&show);
 	system("cls");
-	if(show==1)
+	show = _getch();
+	if(show==49)
 	{
-		showcharacter();
+		timescore();
 	}
-	else if(show != 2)
+	else if(show != 50)
 	{
 		ranking();
 	}
 
 	system("pause");
-
 }
-void showcharacter()
+void timescore()//점수 스코어
 {
-	printf("캐릭터출력");//캐릭터넣어야함
+	clock_t before;
+	double result;
+	before = clock(); //시작시간 기억
+	for(int co = 0; co<99999999; co++)
+	{
+		gotoxy(67,2);
+		printf("score : %d ",co/10000);
+	}
+	result = (double)(clock() - before) / CLOCKS_PER_SEC; //Tick단위를 초단위로 환산해주는 코드 http://www.sarangnamu.net/basic/basic_view.php?no=2245&page=81&sCategory=0
+	
 }
 
 void ranking()

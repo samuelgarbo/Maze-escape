@@ -499,37 +499,37 @@ float game() {
 	create_maze1();
 	system("mode con:cols=43 lines=21");//changes console size
 	before = clock();
-	while (1) {	//level 1
-		if (input == 0) {	//first loop and if character moved
-			system("cls");
-			print_maze();
-		}
-		input = move();
-		if (input == 1) {	//finishes maze and goes to the next level
-			break;
-		}
-	}	
-	//linked list removing function
-	freeList();
-	head = NULL;
-	input = 0;
-	create_maze2();
-	system("mode con:cols=66 lines=23");//changes console size
-	while (1) {	//level 2
-		if (input == 0) {	//if character moved
-			system("cls");
-			print_maze();
-		}
-		input = move();
-		if (input == 1) {	//finishes maze and goes to the next level
-			break;
-		}
-	}
-	//linked list removing function
-	freeList();
-	head = NULL;
-	input = 0;
-	create_maze3();
+	//while (1) {	//level 1
+	//	if (input == 0) {	//first loop and if character moved
+	//		system("cls");
+	//		print_maze();
+	//	}
+	//	input = move();
+	//	if (input == 1) {	//finishes maze and goes to the next level
+	//		break;
+	//	}
+	//}	
+	////linked list removing function
+	//freeList();
+	//head = NULL;
+	//input = 0;
+	//create_maze2();
+	//system("mode con:cols=66 lines=23");//changes console size
+	//while (1) {	//level 2
+	//	if (input == 0) {	//if character moved
+	//		system("cls");
+	//		print_maze();
+	//	}
+	//	input = move();
+	//	if (input == 1) {	//finishes maze and goes to the next level
+	//		break;
+	//	}
+	//}
+	////linked list removing function
+	//freeList();
+	//head = NULL;
+	//input = 0;
+	//create_maze3();
 	system("mode con:cols=200 lines=192");//changes console size
 	while (1) {	//level 3
 		if (input == 0) {	//if character moved
@@ -649,7 +649,14 @@ int arrayState(float result, score *ranking) {
 	return 0;	//no record can be added
 }
 void addToRanking(float result, score *ranking) {
+	system("cls");
+	system("mode con:cols=63 lines=15");//changes console size
 	if (arrayState(result, ranking) == 0) {
+		printf("\n\n");
+		printf("  _  _  ._   _  ._ _. _|_     |  _. _|_ o  _  ._  | | \n");
+		printf(" (_ (_) | | (_| | (_|  |_ |_| | (_|  |_ | (_) | | o o \n");
+		printf("             _|                                       \n");
+		printf("\n");
 		printf("Your time : %.2lf\n", result);
 		return;
 	}
@@ -661,6 +668,11 @@ void addToRanking(float result, score *ranking) {
 	}
 	switch (top) {
 	case -1:	//add when empty
+		printf("\n\n");
+		printf("  _  _  ._   _  ._ _. _|_     |  _. _|_ o  _  ._  | | \n");
+		printf(" (_ (_) | | (_| | (_|  |_ |_| | (_|  |_ | (_) | | o o \n");
+		printf("             _|                                       \n");
+		printf("\n");
 		printf("Enter your name : ");
 		fgets(ranking[0].name, 20, stdin);
 		ranking[0].time = result;
@@ -677,6 +689,11 @@ void addToRanking(float result, score *ranking) {
 			strcpy(ranking[i].name, ranking[i - 1].name);
 		}
 		ranking[i].time = result;
+		printf("\n\n");
+		printf("  _  _  ._   _  ._ _. _|_     |  _. _|_ o  _  ._  | | \n");
+		printf(" (_ (_) | | (_| | (_|  |_ |_| | (_|  |_ | (_) | | o o \n");
+		printf("             _|                                       \n");
+		printf("\n");
 		printf("Your time : %.2lf\n", result);
 		printf("Enter your name : ");
 		fgets(ranking[i].name, 20, stdin);
@@ -690,6 +707,11 @@ void addToRanking(float result, score *ranking) {
 					strcpy(ranking[i].name, ranking[i - 1].name);
 				}
 				ranking[i].time = result;
+				printf("\n\n");
+				printf("  _  _  ._   _  ._ _. _|_     |  _. _|_ o  _  ._  | | \n");
+				printf(" (_ (_) | | (_| | (_|  |_ |_| | (_|  |_ | (_) | | o o \n");
+				printf("             _|                                       \n");
+				printf("\n");
 				printf("Your time : %.2lf\n", result);
 				printf("Enter your name : ");
 				fgets(ranking[i].name, 20, stdin);
@@ -697,6 +719,11 @@ void addToRanking(float result, score *ranking) {
 			}
 		}			
 		ranking[top].time = result;
+		printf("\n\n");
+		printf("  _  _  ._   _  ._ _. _|_     |  _. _|_ o  _  ._  | | \n");
+		printf(" (_ (_) | | (_| | (_|  |_ |_| | (_|  |_ | (_) | | o o \n");
+		printf("             _|                                       \n");
+		printf("\n");
 		printf("Your time : %.2lf\n", result);
 		printf("Enter your name : ");
 		fgets(ranking[top].name, 20, stdin);		

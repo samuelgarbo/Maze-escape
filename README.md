@@ -1,2 +1,2 @@
 # Maze-escape
-기초프로젝트 2
+Simple Maze escape game in C language
